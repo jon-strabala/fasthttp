@@ -1314,10 +1314,15 @@ func (c *HostClient) doNonNilReqResp(req *Request, resp *Response) (bool, error)
 	resp.Header.secureErrorLogMessage = c.SecureErrorLogMessage
 	req.secureErrorLogMessage = c.SecureErrorLogMessage
 	req.Header.secureErrorLogMessage = c.SecureErrorLogMessage
-
+	
+	/*
+	// JAS 2023-06-28 this creates an issue for a lot of HTTPS requests
+        // Error msg "HostClient can't follow redirects to a different protocol, please use Client instead - 1"
+	// however if I remove this every thing works for non-redirects
 	if c.IsTLS != req.URI().isHTTPS() {
 		return false, ErrHostClientRedirectToDifferentScheme
 	}
+ 	*/
 
 	atomic.StoreUint32(&c.lastUseTime, uint32(time.Now().Unix()-startTimeUnix))
 
