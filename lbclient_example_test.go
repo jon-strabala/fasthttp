@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/valyala/fasthttp"
+	"github.com/jon-strabala/fasthttp"
 )
 
 func ExampleLBClient() {
